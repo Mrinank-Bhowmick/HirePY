@@ -1,6 +1,13 @@
 "use client";
 import dynamic from "next/dynamic";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 import Features from "@/components/sections/Features";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Pricing from "@/components/sections/Pricing";
@@ -30,22 +37,48 @@ export default function LandingPage() {
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
-          <a href="#features" className="hover:text-cyan-600 transition-colors">
+          <a
+            href="#features"
+            className="hover:text-cyan-600 transition-colors cursor-pointer"
+          >
             Features
           </a>
           <a
             href="#how-it-works"
-            className="hover:text-cyan-600 transition-colors"
+            className="hover:text-cyan-600 transition-colors cursor-pointer"
           >
             How it Works
           </a>
-          <a href="#pricing" className="hover:text-cyan-600 transition-colors">
+          <a
+            href="#pricing"
+            className="hover:text-cyan-600 transition-colors cursor-pointer"
+          >
             Pricing
           </a>
         </div>
-        <button className="px-5 py-2.5 rounded-full bg-linear-to-r from-cyan-500 to-blue-500 text-white text-sm font-medium hover:from-cyan-600 hover:to-blue-600 transition-all hover:shadow-lg hover:shadow-cyan-400/40 hover:-translate-y-0.5">
-          Get Started
-        </button>
+        <div className="flex items-center gap-3">
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="text-slate-700 font-medium text-sm sm:text-base px-4 sm:px-5 cursor-pointer hover:text-cyan-600 transition-colors">
+                Sign In
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer hover:from-cyan-600 hover:to-blue-600 transition-all hover:shadow-lg hover:shadow-cyan-400/40">
+                Sign Up
+              </button>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <a
+              href="/dashboard"
+              className="bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer hover:from-cyan-600 hover:to-blue-600 transition-all hover:shadow-lg hover:shadow-cyan-400/40 flex items-center"
+            >
+              Dashboard
+            </a>
+            <UserButton />
+          </SignedIn>
+        </div>
       </nav>
 
       {/* Hero Section */}
@@ -72,13 +105,28 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-linear-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all hover:shadow-xl hover:shadow-cyan-400/40 flex items-center justify-center gap-2 group hover:-translate-y-0.5">
-                Start Mock Interview
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-cyan-700 font-semibold border border-cyan-200 hover:bg-cyan-50 transition-all hover:border-cyan-300 flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-md">
-                View Demo
-              </button>
+              <SignedIn>
+                <a
+                  href="/dashboard"
+                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-linear-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all hover:shadow-xl hover:shadow-cyan-400/40 flex items-center justify-center gap-2 group hover:-translate-y-0.5"
+                >
+                  Go to Dashboard
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </SignedIn>
+              <SignedOut>
+                <SignUpButton mode="modal">
+                  <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-linear-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all hover:shadow-xl hover:shadow-cyan-400/40 flex items-center justify-center gap-2 group hover:-translate-y-0.5">
+                    Start Mock Interview
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </SignUpButton>
+                <SignInButton mode="modal">
+                  <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-cyan-700 font-semibold border border-cyan-200 hover:bg-cyan-50 transition-all hover:border-cyan-300 flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-md">
+                    Sign In
+                  </button>
+                </SignInButton>
+              </SignedOut>
             </div>
 
             <div className="pt-8 flex items-center justify-center lg:justify-start gap-8 text-sm text-slate-600">
