@@ -27,18 +27,18 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 bg-white/30 backdrop-blur-sm relative">
+    <section className="py-24 bg-white/50 backdrop-blur-sm relative">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+            className="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
           >
             How It Works
           </motion.h2>
-          <p className="text-slate-600">
+          <p className="text-slate-700">
             Your journey to interview mastery in four simple steps.
           </p>
         </div>
@@ -53,17 +53,32 @@ export default function HowItWorks() {
             >
               <defs>
                 <linearGradient
-                  id="neonGradient"
+                  id="flowingGradient"
                   x1="0%"
                   y1="0%"
                   x2="100%"
                   y2="0%"
                 >
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="100%" stopColor="#06b6d4" />
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
+                  <stop offset="30%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#06b6d4" stopOpacity="1" />
+                  <stop offset="70%" stopColor="#06b6d4" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+                  <animate
+                    attributeName="x1"
+                    values="-100%;100%"
+                    dur="15s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="x2"
+                    values="0%;200%"
+                    dur="15s"
+                    repeatCount="indefinite"
+                  />
                 </linearGradient>
                 <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                  <feGaussianBlur stdDeviation="6" result="coloredBlur" />
                   <feMerge>
                     <feMergeNode in="coloredBlur" />
                     <feMergeNode in="SourceGraphic" />
@@ -80,23 +95,16 @@ export default function HowItWorks() {
                 strokeLinejoin="round"
                 className="opacity-30"
               />
-              {/* Neon Liquid */}
-              <motion.path
+              {/* Flowing Neon Liquid */}
+              <path
                 d="M0,100 L20,100 L20,20 L280,20 L280,100 L320,100 L320,180 L580,180 L580,100 L620,100 L620,20 L880,20 L880,100 L920,100 L920,180 L1180,180 L1180,100 L1200,100"
                 fill="none"
-                stroke="url(#neonGradient)"
-                strokeWidth="20"
+                stroke="url(#flowingGradient)"
+                strokeWidth="16"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 filter="url(#glow)"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "loop",
-                }}
+                className="opacity-90"
               />
             </svg>
           </div>
@@ -111,13 +119,13 @@ export default function HowItWorks() {
                 transition={{ delay: index * 0.2 }}
                 className="flex flex-col items-center text-center group"
               >
-                <div className="w-16 h-16 rounded-full bg-white border-4 border-slate-50 shadow-lg flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 group-hover:border-blue-100 transition-all duration-300">
+                <div className="w-16 h-16 rounded-full bg-white border-4 border-cyan-100 shadow-lg flex items-center justify-center text-cyan-600 mb-6 group-hover:scale-110 group-hover:border-cyan-200 transition-all duration-300">
                   {step.icon}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-bold text-slate-800 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-slate-600">{step.description}</p>
+                <p className="text-sm text-slate-700">{step.description}</p>
               </motion.div>
             ))}
           </div>

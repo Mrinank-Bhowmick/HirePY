@@ -47,16 +47,16 @@ export default function Features() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
+                className="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
               >
-                Why Choose <span className="text-blue-600">HirePY</span>?
+                Why Choose <span className="text-cyan-600">HirePY</span>?
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-slate-600 max-w-2xl mx-auto"
+                className="text-slate-700 max-w-2xl mx-auto"
               >
                 Everything you need to ace your next interview, powered by
                 advanced artificial intelligence.
@@ -105,9 +105,9 @@ function FeatureCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.06 }}
       onMouseEnter={handleMouseEnter}
-      className="flex flex-col items-center text-center p-8 rounded-2xl bg-linear-to-r from-white/60 to-white/30 border border-white/30 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 cursor-pointer h-full"
+      className="flex flex-col items-center text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-cyan-100 shadow-lg hover:shadow-2xl hover:shadow-cyan-200/50 transition-all hover:-translate-y-2 cursor-pointer h-full"
     >
-      <div className="relative w-32 h-32 rounded-2xl bg-white shadow-md flex items-center justify-center mb-6 overflow-hidden">
+      <div className="relative w-32 h-32 rounded-2xl bg-gradient-to-br from-cyan-50 to-blue-50 shadow-md border border-cyan-100 flex items-center justify-center mb-6 overflow-hidden">
         {/* Animated GIF - always visible, plays on first hover */}
         <Image
           src={feature.gif}
@@ -120,10 +120,10 @@ function FeatureCard({
       </div>
 
       <div>
-        <h3 className="text-xl md:text-2xl font-semibold text-slate-900 mb-3">
+        <h3 className="text-xl md:text-2xl font-semibold text-slate-800 mb-3">
           {feature.title}
         </h3>
-        <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+        <p className="text-slate-700 leading-relaxed">{feature.description}</p>
       </div>
     </motion.div>
   );
