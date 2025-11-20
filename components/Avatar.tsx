@@ -5,11 +5,9 @@ import { Group, Vector3, Vector2, Raycaster, Plane } from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 
 export function Avatar(props: any) {
-  const { scene } = useGLTF(
-    "https://models.readyplayer.me/685257be9e97ce15a519088a.glb"
-  );
+  const { scene } = useGLTF("/interviewer.glb");
   const group = useRef<Group>(null);
-  const [head, setHead] = useState<any>(null);
+  const headRef = useRef<any>(null);
 
   // Raycasting setup following the article
   const intersectionPoint = useRef(new Vector3());
@@ -21,18 +19,18 @@ export function Avatar(props: any) {
 
   // Find the head bone when model loads
   useEffect(() => {
-    if (scene) {
+    if (scene && !headRef.current) {
       // ReadyPlayer.me models use Armature structure
-      // Let's traverse and find the head bone
+      // Find the "Head" bone specifically (not HeadTop_End or Wolf3D_Head)
       scene.traverse((child) => {
-        if (child.name.toLowerCase().includes("head")) {
+        if (child.name === "Head" && child.type === "Bone") {
           console.log("Found head bone:", child.name);
-          setHead(child);
+          headRef.current = child;
         }
       });
 
       // If not found, log all bones for debugging
-      if (!head) {
+      if (!headRef.current) {
         console.log("Available bones in model:");
         scene.traverse((child) => {
           if (child.type === "Bone") {
@@ -55,12 +53,12 @@ export function Avatar(props: any) {
   }, []);
 
   useFrame(() => {
-    if (head) {
-      // Set up plane based on camera position
+    if (headRef.current) {
+      // Set up plane based on camera position - following the article
       planeNormal.current.copy(camera.position).normalize();
       plane.current.setFromNormalAndCoplanarPoint(
         planeNormal.current,
-        new Vector3(0, 0, 0)
+        scene.position
       );
 
       // Cast ray from camera through mouse position
@@ -70,9 +68,10 @@ export function Avatar(props: any) {
         intersectionPoint.current
       );
 
-      // Make head look at intersection point with fixed z value
+      // Make head look at intersection point with fixed z value (as per article)
+      // Important: Using fixed z=2 to avoid issues with negative z values
       if (intersectionPoint.current) {
-        head.lookAt(
+        headRef.current.lookAt(
           intersectionPoint.current.x,
           intersectionPoint.current.y,
           2
@@ -88,4 +87,4 @@ export function Avatar(props: any) {
   );
 }
 
-useGLTF.preload("https://models.readyplayer.me/685257be9e97ce15a519088a.glb");
+useGLTF.preload("/interviewer.glb");
