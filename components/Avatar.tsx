@@ -1,13 +1,23 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
-import { Group, Vector3, Vector2, Raycaster, Plane } from "three";
+import React, { useRef, useEffect } from "react";
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { Group, Vector3, Vector2, Raycaster, Plane, Mesh } from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 
 export function Avatar(props: any) {
-  const { scene } = useGLTF("/interviewer.glb");
+  const { scene, animations } = useGLTF("/animated-model.glb");
   const group = useRef<Group>(null);
+  const { actions } = useAnimations(animations, group);
   const headRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (actions) {
+      const actionNames = Object.keys(actions);
+      if (actionNames.length > 0) {
+        actions[actionNames[0]]?.reset().fadeIn(0.5).play();
+      }
+    }
+  }, [actions]);
 
   // Raycasting setup following the article
   const intersectionPoint = useRef(new Vector3());
@@ -17,27 +27,20 @@ export function Avatar(props: any) {
   const raycaster = useRef(new Raycaster());
   const { camera } = useThree();
 
-  // Find the head bone when model loads
+  // Find the head bone and setup meshes when model loads
   useEffect(() => {
-    if (scene && !headRef.current) {
-      // ReadyPlayer.me models use Armature structure
-      // Find the "Head" bone specifically (not HeadTop_End or Wolf3D_Head)
+    if (scene) {
       scene.traverse((child) => {
+        if (child instanceof Mesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+          child.frustumCulled = false;
+        }
         if (child.name === "Head" && child.type === "Bone") {
           console.log("Found head bone:", child.name);
           headRef.current = child;
         }
       });
-
-      // If not found, log all bones for debugging
-      if (!headRef.current) {
-        console.log("Available bones in model:");
-        scene.traverse((child) => {
-          if (child.type === "Bone") {
-            console.log("- ", child.name);
-          }
-        });
-      }
     }
   }, [scene]);
 
@@ -82,9 +85,14 @@ export function Avatar(props: any) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <primitive object={scene} scale={1.8} position={[0, -2.8, 0]} />
+      <primitive
+        object={scene}
+        scale={1.6}
+        position={[0.2, -1.8, 0]}
+        rotation={[0, -0.3, 0]}
+      />
     </group>
   );
 }
 
-useGLTF.preload("/interviewer.glb");
+useGLTF.preload("/animated-model.glb");
