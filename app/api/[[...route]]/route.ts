@@ -15,7 +15,6 @@ app.get("/", async (c) => {
   return c.json({ hello: "world", message: "HirePY API" });
 });
 
-// Add routes here
 app.route("/interviews", interviewsRoute);
 
 export const GET = handle(app);
