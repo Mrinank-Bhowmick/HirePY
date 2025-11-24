@@ -16,7 +16,7 @@ import { GoogleGenAI, Modality } from "@google/genai";
 
 // Configuration for the Gemini API
 const MODEL_NAME = "models/gemini-2.5-flash-native-audio-preview-09-2025";
-const API_KEY = "AIzaSyAyZ5O-qGjszUCQE12ZxoWWr12UEq5MXBE";
+const API_KEY = "";
 
 const base64ToFloat32 = (base64Data: string) => {
   const binaryString = atob(base64Data);
