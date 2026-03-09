@@ -1,29 +1,52 @@
 "use client";
-import { Github, Twitter, Linkedin, Mail, ArrowRight, Heart } from "lucide-react";
+import { Github, Mail, ArrowRight, Heart } from "lucide-react";
+
+const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+  </svg>
+);
 
 const navigation = {
-  product: [
+  project: [
+    { name: "Source Code", href: "https://github.com/Mrinank-Bhowmick/HirePY" },
     { name: "Features", href: "#features" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "FAQ", href: "#faq" },
-  ],
-  company: [
-    { name: "About Us", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Contact", href: "#" },
-  ],
-  legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "Cookie Policy", href: "#" },
+    { name: "Tech Stack", href: "#features" },
   ],
   social: [
-    { name: "GitHub", icon: Github, href: "#" },
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" },
-    { name: "Email", icon: Mail, href: "#" },
+    { name: "GitHub", icon: Github, href: "https://github.com/Mrinank-Bhowmick" },
+    { name: "LinkedIn", icon: LinkedInIcon, href: "https://www.linkedin.com/in/mrinank-bhowmick/" },
+    { name: "Twitter", icon: TwitterIcon, href: "https://x.com/mrinank110" }
   ],
 };
 
@@ -56,8 +79,8 @@ export default function Footer() {
               </div>
               
               <p className="text-slate-400 leading-relaxed max-w-sm">
-                Empowering job seekers with AI-driven interview preparation. 
-                Master your skills, boost your confidence, and land your dream job.
+                A technical showcase of real-time WebRTC, 3D Canvas rendering, and Google's latest audio AI capabilities.
+                Developed by Mrinank Bhowmick.
               </p>
               
               {/* Social links */}
@@ -79,16 +102,18 @@ export default function Footer() {
             </div>
 
             {/* Navigation columns */}
-            <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-2 gap-8">
+            <div className="lg:col-span-8 flex justify-end">
               <div>
                 <h4 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
-                  Product
+                  Project Links
                 </h4>
                 <ul className="space-y-3">
-                  {navigation.product.map((item) => (
+                  {navigation.project.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
+                        target={item.href.startsWith('http') ? "_blank" : "_self"}
+                        rel={item.href.startsWith('http') ? "noopener noreferrer" : ""}
                         className="text-slate-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
                       >
                         <span className="w-1 h-1 rounded-full bg-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -97,49 +122,6 @@ export default function Footer() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
-                  Company
-                </h4>
-                <ul className="space-y-3">
-                  {navigation.company.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-slate-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
-                      >
-                        <span className="w-1 h-1 rounded-full bg-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Newsletter column */}
-            <div className="lg:col-span-3">
-              <h4 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
-                Stay Updated
-              </h4>
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-                Subscribe to our newsletter for the latest interview tips, AI updates, and exclusive content.
-              </p>
-              
-              <div className="space-y-3">
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full bg-slate-800/50 border border-slate-700/50 text-white placeholder-slate-500 px-4 py-3 rounded-xl focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all"
-                  />
-                </div>
-                <button className="w-full bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold py-3 px-4 rounded-xl transition-all hover:shadow-lg hover:shadow-cyan-500/20 flex items-center justify-center gap-2 group">
-                  Subscribe
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </button>
               </div>
             </div>
           </div>
@@ -156,15 +138,7 @@ export default function Footer() {
               </p>
               
               <div className="flex items-center gap-6 text-sm">
-                {navigation.legal.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-slate-500 hover:text-white transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                 <a href="https://github.com/Mrinank-Bhowmick" className="text-slate-500 hover:text-white transition-colors">Built by Mrinank Bhowmick</a>
               </div>
             </div>
           </div>

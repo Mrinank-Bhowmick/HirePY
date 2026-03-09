@@ -15,8 +15,8 @@ export default function MeetingBox() {
       <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-10">
         <div className="flex items-center gap-3 bg-white/90 backdrop-blur-xl px-4 py-2.5 rounded-full border border-slate-200/50 shadow-lg shadow-slate-900/5">
           <div className="relative">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-            <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping opacity-75" />
+            <div className="w-2.5 h-2.5 rounded-full bg-cyan-500" />
+            <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-cyan-500 animate-ping opacity-75" />
           </div>
           <span className="text-sm font-semibold text-slate-700">
             AI Interviewer Active

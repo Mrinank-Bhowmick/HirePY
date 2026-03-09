@@ -20,7 +20,7 @@ export default function Pricing() {
       
       {/* Decorative orbs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-100/40 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-100/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
@@ -29,7 +29,7 @@ export default function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-xs font-semibold uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-xs font-semibold uppercase tracking-wider mb-6"
           >
             <Sparkles className="w-3.5 h-3.5" />
             Early Access
@@ -66,17 +66,17 @@ export default function Pricing() {
         >
           <div className="relative group">
             {/* Animated border gradient */}
-            <div className="absolute -inset-px bg-linear-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-4xl opacity-70 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-500" />
+            <div className="absolute -inset-px bg-linear-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-4xl opacity-70 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-500" />
             
             {/* Card */}
-            <div className="relative rounded-4xl bg-white overflow-hidden">
+            <div className="relative rounded-4xl bg-white overflow-hidden shadow-[0_20px_40px_rgb(0,0,0,0.06)]">
               {/* Top accent bar */}
-              <div className="h-1.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-500" />
+              <div className="h-1.5 bg-linear-to-r from-cyan-500 via-blue-500 to-cyan-500" />
               
               <div className="p-8 sm:p-12 lg:p-16">
                 {/* Beta Badge & Icon */}
                 <div className="flex flex-col items-center mb-10">
-                  <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-cyan-50 via-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-cyan-50 via-blue-50 to-cyan-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-sm border border-slate-100">
                     <Clock className="w-10 h-10 text-cyan-600" />
                   </div>
                   
@@ -100,7 +100,7 @@ export default function Pricing() {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                  <button className="group/btn relative px-8 py-4 bg-linear-to-r from-slate-900 to-slate-800 text-white rounded-2xl font-semibold text-lg overflow-hidden transition-all hover:shadow-2xl hover:shadow-slate-900/20 hover:-translate-y-1">
+                  <button className="group/btn relative px-8 py-4 bg-slate-900 text-white rounded-2xl font-semibold text-lg overflow-hidden transition-all shadow-[0_8px_20px_rgb(15,23,42,0.15)] hover:shadow-[0_12px_25px_rgb(15,23,42,0.25)] hover:-translate-y-1">
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       Join Waitlist
                       <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
@@ -108,7 +108,7 @@ export default function Pricing() {
                     <div className="absolute inset-0 bg-linear-to-r from-cyan-600 to-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
                   </button>
                   
-                  <button className="px-8 py-4 bg-white text-slate-700 rounded-2xl font-semibold text-lg border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all hover:-translate-y-1 hover:shadow-lg flex items-center justify-center gap-2">
+                  <button className="px-8 py-4 bg-white text-slate-700 rounded-2xl font-semibold text-lg border border-slate-200 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
                     <Zap className="w-5 h-5 text-cyan-600" />
                     Try Demo Now
                   </button>

@@ -7,29 +7,37 @@ const steps = [
     icon: UserPlus,
     title: "Create Account",
     description: "Sign up in seconds with your email or social accounts and set up your professional profile.",
-    color: "from-cyan-500 to-blue-500",
-    bgColor: "bg-cyan-50",
+    color: "from-cyan-500 to-cyan-400",
+    iconColor: "text-cyan-500",
+    bgColor: "bg-cyan-50/50",
+    borderColor: "border-cyan-100",
   },
   {
     icon: Settings,
     title: "Customize Interview",
     description: "Select your target industry, role, company, and difficulty level for a tailored experience.",
-    color: "from-blue-500 to-indigo-500",
-    bgColor: "bg-blue-50",
+    color: "from-cyan-400 to-blue-400",
+    iconColor: "text-cyan-500",
+    bgColor: "bg-slate-50",
+    borderColor: "border-cyan-100/50",
   },
   {
     icon: Video,
     title: "Start Session",
     description: "Interact with our AI interviewer in a realistic video environment with real-time responses.",
-    color: "from-indigo-500 to-purple-500",
-    bgColor: "bg-indigo-50",
+    color: "from-blue-400 to-blue-500",
+    iconColor: "text-blue-500",
+    bgColor: "bg-blue-50/50",
+    borderColor: "border-blue-100",
   },
   {
     icon: FileText,
     title: "Get Feedback",
     description: "Receive comprehensive analysis with actionable insights to improve your interview skills.",
-    color: "from-purple-500 to-pink-500",
-    bgColor: "bg-purple-50",
+    color: "from-blue-500 to-cyan-500",
+    iconColor: "text-blue-600",
+    bgColor: "bg-slate-50",
+    borderColor: "border-blue-100/50",
   },
 ];
 
@@ -38,8 +46,8 @@ export default function HowItWorks() {
     <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -49,9 +57,9 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
             Simple Process
           </motion.div>
           
@@ -81,8 +89,8 @@ export default function HowItWorks() {
         <div className="relative max-w-6xl mx-auto">
           {/* Connection Line - Desktop */}
           <div className="hidden lg:block absolute top-24 left-[calc(12.5%+2rem)] right-[calc(12.5%+2rem)] h-0.5">
-            <div className="w-full h-full bg-linear-to-r from-cyan-200 via-indigo-200 to-purple-200 rounded-full" />
-            <div className="absolute inset-0 bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-400 rounded-full animate-pulse opacity-50" />
+            <div className="w-full h-full bg-linear-to-r from-slate-200 via-cyan-200 to-slate-200 rounded-full" />
+            <div className="absolute inset-0 bg-linear-to-r from-cyan-400/0 via-cyan-400 to-blue-400/0 rounded-full animate-pulse opacity-50" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
@@ -109,8 +117,8 @@ export default function HowItWorks() {
                       <div className={`absolute inset-0 bg-linear-to-br ${step.color} rounded-3xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
                       
                       {/* Icon box */}
-                      <div className={`relative w-24 h-24 ${step.bgColor} rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-lg shadow-slate-100`}>
-                        <Icon className={`w-10 h-10 bg-linear-to-br ${step.color} bg-clip-text text-transparent`} strokeWidth={1.5} />
+                      <div className={`relative w-24 h-24 ${step.bgColor} border ${step.borderColor} rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-md shadow-slate-200/50 group-hover:shadow-xl group-hover:shadow-cyan-500/10`}>
+                        <Icon className={`w-10 h-10 ${step.iconColor}`} strokeWidth={1.5} />
                         
                         {/* Gradient overlay on icon */}
                         <div className={`absolute inset-0 bg-linear-to-br ${step.color} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`} />
@@ -132,7 +140,7 @@ export default function HowItWorks() {
 
                     {/* Arrow for desktop (except last item) */}
                     {index < steps.length - 1 && (
-                      <div className="hidden lg:flex absolute top-24 -right-3 transform translate-x-1/2 text-slate-300 group-hover:text-cyan-400 transition-colors z-10">
+                      <div className="hidden lg:flex absolute top-24 -right-3 transform translate-x-1/2 text-slate-300 group-hover:text-cyan-500 transition-colors z-10 hover:scale-110">
                         <ArrowRight className="w-6 h-6" />
                       </div>
                     )}
@@ -153,10 +161,13 @@ export default function HowItWorks() {
         >
           <a
             href="/dashboard"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-slate-900 to-slate-800 text-white rounded-2xl font-semibold text-lg hover:shadow-2xl hover:shadow-slate-900/20 transition-all hover:-translate-y-1 group"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-2xl font-semibold text-lg transition-all shadow-[0_8px_20px_rgb(15,23,42,0.15)] hover:shadow-[0_12px_25px_rgb(6,182,212,0.25)] hover:-translate-y-1 relative overflow-hidden group"
           >
-            Get Started Now
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-2">
+              Get Started Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </span>
+            <div className="absolute inset-0 bg-linear-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
         </motion.div>
       </div>

@@ -356,16 +356,16 @@ export default function InterviewPage() {
   }, [disconnect]);
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50/50 text-slate-900 flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Background Ambient Effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-purple-900/20 via-black to-black pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-cyan-100/40 via-transparent to-transparent pointer-events-none" />
 
       <div className="z-10 flex flex-col items-center gap-8 max-w-md w-full">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-600">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-linear-to-r from-cyan-600 to-blue-600">
             Gemini Live Interview
           </h1>
-          <p className="text-gray-400">Real-time voice interaction with VAD</p>
+          <p className="text-slate-500">Real-time voice interaction with VAD</p>
         </div>
 
         {/* Main Visualizer Circle */}
@@ -382,7 +382,7 @@ export default function InterviewPage() {
                   duration: 1.5,
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 rounded-full bg-blue-500/30 blur-xl"
+                className="absolute inset-0 rounded-full bg-cyan-500/20 blur-xl"
               />
             )}
           </AnimatePresence>
@@ -394,15 +394,15 @@ export default function InterviewPage() {
               boxShadow: isMicOn
                 ? `0 0 ${audioLevel / 5}px ${
                     audioLevel / 10
-                  }px rgba(147, 51, 234, 0.5)`
+                  }px rgba(6, 182, 212, 0.4)`
                 : "none",
             }}
             className={cn(
-              "w-40 h-40 rounded-full flex items-center justify-center transition-colors duration-300",
+              "w-40 h-40 rounded-full flex items-center justify-center transition-colors duration-300 shadow-xl border border-slate-100",
               isConnected
-                ? "bg-linear-to-br from-blue-600 to-purple-600"
-                : "bg-gray-800",
-              aiSpeaking && "from-blue-400 to-cyan-400"
+                ? "bg-linear-to-br from-cyan-500 to-blue-500"
+                : "bg-white",
+              aiSpeaking && "from-cyan-400 to-blue-400"
             )}
           >
             {isConnected ? (
@@ -413,7 +413,7 @@ export default function InterviewPage() {
                 )}
               />
             ) : (
-              <Power className="w-12 h-12 text-gray-400" />
+              <Power className="w-12 h-12 text-slate-300" />
             )}
           </motion.div>
 
@@ -422,9 +422,9 @@ export default function InterviewPage() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-              className="absolute inset-0 rounded-full border border-white/10"
+              className="absolute inset-0 rounded-full border border-slate-200"
             >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(96,165,250,0.8)]" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-500 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.6)]" />
             </motion.div>
           )}
         </div>
@@ -443,7 +443,7 @@ export default function InterviewPage() {
               size="lg"
               onClick={connectToGemini}
               disabled={isConnecting}
-              className="w-full bg-white text-black hover:bg-gray-200 transition-all rounded-full h-12 font-medium"
+              className="w-full bg-slate-900 text-white hover:bg-slate-800 transition-all rounded-full h-12 font-medium shadow-[0_8px_20px_rgb(15,23,42,0.15)] hover:shadow-[0_12px_25px_rgb(15,23,42,0.25)] hover:-translate-y-1"
             >
               {isConnecting ? (
                 <>
@@ -462,8 +462,8 @@ export default function InterviewPage() {
                 className={cn(
                   "w-14 h-14 rounded-full border-2 transition-all",
                   isMicOn
-                    ? "border-purple-500 bg-purple-500/10 text-purple-400"
-                    : "border-gray-700 text-gray-500"
+                    ? "border-cyan-500 bg-cyan-50 text-cyan-600"
+                    : "border-slate-200 text-slate-400 bg-white hover:bg-slate-50"
                 )}
                 onClick={() => {
                   if (mediaStreamRef.current) {
@@ -493,7 +493,7 @@ export default function InterviewPage() {
           )}
         </div>
 
-        <div className="text-xs text-gray-600 max-w-xs text-center">
+        <div className="text-xs text-slate-500 max-w-xs text-center font-medium">
           Powered by Gemini 2.5 Flash Native Audio. <br />
           Ensure your microphone is enabled.
         </div>
